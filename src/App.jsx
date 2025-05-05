@@ -10,7 +10,7 @@ function App() {
     <>
       <h1>new</h1>
       <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <RazorpayButton keyId="rzp_test_Q1Xv0fds2p6TzS" amount={50000} />
+      <RazorpayButton amount={50000} />  {/* ₹500 */}
     </div>
     </>
   )
