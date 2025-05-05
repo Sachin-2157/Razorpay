@@ -10,6 +10,6 @@ build/
 
 # Vite cache
 .vite/
-
+k
 # system files
 .DS_Store

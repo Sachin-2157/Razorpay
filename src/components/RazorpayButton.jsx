@@ -1,3 +1,4 @@
+// src/components/RazorpayButton.jsx
 import React, { useEffect } from 'react';
 
 export default function RazorpayButton({ amount = 50000 }) {
@@ -18,10 +19,25 @@ export default function RazorpayButton({ amount = 50000 }) {
       currency: 'INR',
       name: 'Demo Corp',
       description: 'Test Payment',
+
+      config: {
+        display: {
+          blocks: {
+            highlighted: {
+              name: 'Pay via UPI',
+              instruments: [{ method: 'upi' }]
+            }
+          },
+          sequence: ['block.highlighted'],
+          preferences: { show_default_blocks: true }
+        }
+      },
+
       handler: res => alert('Success: ' + res.razorpay_payment_id),
       prefill: { name:'Test', email:'t@e.com', contact:'9999999999' },
-      theme: { color: '#1D4ED8' },
+      theme: { color: '#1D4ED8' }
     };
+
     const rzp = new window.Razorpay(options);
     rzp.open();
   }
