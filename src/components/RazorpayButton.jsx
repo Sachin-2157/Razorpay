@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 
-export default function RazorpayButton({ amount=50000, keyId }) {
+export default function RazorpayButton({ amount = 50000 }) {
+  const keyId = import.meta.env.VITE_RAZORPAY_KEY_ID;
+
   useEffect(() => {
     const s = document.createElement('script');
     s.src = 'https://checkout.razorpay.com/v1/checkout.js';
@@ -12,13 +14,16 @@ export default function RazorpayButton({ amount=50000, keyId }) {
   function onClick() {
     const options = {
       key: keyId,
-      amount, currency:'INR',
-      name:'Demo Corp', description:'Test',
-      handler: res => alert('Success: '+res.razorpay_payment_id),
-      prefill:{ name:'Test', email:'t@e.com', contact:'9999999999' },
-      theme:{ color:'#1D4ED8' }
+      amount,
+      currency: 'INR',
+      name: 'Demo Corp',
+      description: 'Test Payment',
+      handler: res => alert('Success: ' + res.razorpay_payment_id),
+      prefill: { name:'Test', email:'t@e.com', contact:'9999999999' },
+      theme: { color: '#1D4ED8' },
     };
-    new window.Razorpay(options).open();
+    const rzp = new window.Razorpay(options);
+    rzp.open();
   }
 
   return (
